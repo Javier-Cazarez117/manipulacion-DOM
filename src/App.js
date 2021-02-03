@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-import AsignaturaCard from './components/AsignaturaCard';
+import MateriaCard from './components/MateriaCard';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) =>({
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) =>({
 function App() {
   const classes = useStyles();
 
-  const [asignaturas, setAsignaturas] = useState(
+  const [materias, setMaterias] = useState(
     [
       { materia: 'Seguridad en el Desarrollo de Software', profesor: 'Mtro. Iván Antonio', horario: 'martes 16-18, jueves 14 -16' },
       { materia: 'Matemáticas para Ingeniería', profesor: 'Mtro. David García', horario: ' miércoles 15-18, viernes 16-18' },
@@ -32,23 +32,23 @@ function App() {
     ]
   );
 
-  const agregarAsignatura= () =>{
-    console.log("Agregar Asignatura");
-    setAsignaturas([
-      ...asignaturas,
+  const agregarMateria = () =>{
+    console.log("Materia Agregada");
+    setMaterias([
+      ...materias,
       {materia: "", profesor: "", horario: ""}
     ]);
   };
 
-  const eliminarAsignatura = (id) =>{
-    asignaturas.splice(id, 1);
-    setAsignaturas([...asignaturas]);
+  const eliminarMateria = (id) =>{
+    materias.splice(id, 1);
+    setMaterias([...materias]);
   };
 
-  const renderAsignaturas = () => {
-    return asignaturas.map((asignatura, index) => (
+  const renderMaterias = () => {
+    return materias.map((materia, index) => (
       <Grid key={index} item sx={12} sm={3}>
-        <AsignaturaCard datos={asignatura} id={index} onDelete={eliminarAsignatura}/>
+        <MateriaCard datos={materia} id={index} onDelete={eliminarMateria}/>
       </Grid>
     ));
   };
@@ -59,13 +59,13 @@ function App() {
         variant="contained"
         color="primary"
         startIcon={<Icon>add</Icon>}
-        onClick={agregarAsignatura}
+        onClick={agregarMateria}
         >
           Agregar
         </Button>
       </Grid>
       <Grid container spacing={3}>
-        {renderAsignaturas()}
+        {renderMaterias()}
       </Grid>
     </Paper>
   );

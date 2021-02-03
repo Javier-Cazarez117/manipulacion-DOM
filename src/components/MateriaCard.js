@@ -20,30 +20,37 @@ const useStyles = makeStyles({
     }
 });
 
-export default function MateriaCard({datos, id, onDelete}){
+export default function CursoCard({datos, id, onDelete}){
     const classes =useStyles();
+
     const [editar, setEditar] = useState(false);
-    const [asignatura, setAsignatura] = useState(datos);
+
+    const [materia, setMateria] = useState(datos);
+
     const toogleEditar = () => {
         setEditar(!editar);
     };
-    const guardarAsignatura = () => {
-        console.log("Guardar Asignatura");
+
+    const guardarMateria = () => {
+        console.log("Materia Guardada");
         setEditar(false);
     }
+
     const onChange = (e) => {
-        setAsignatura({
-            ...asignatura,
+        setMateria({
+            ...materia,
             [e.target.name]: e.target.value,
         });
     };
+
     const llamarEliminar = () =>{
         if(onDelete){
             onDelete(id);
         }
     };
+
     useEffect(() =>{
-        setAsignatura({...datos});
+        setMateria({...datos});
     }, [datos,id]);
 
     return(
@@ -55,7 +62,7 @@ export default function MateriaCard({datos, id, onDelete}){
                             Materia
                         </Typography>
                         <Typography component="h2">
-                            {asignatura.materia}
+                            {materia.materia}
                         </Typography>
                     </>
                 )}
@@ -63,7 +70,7 @@ export default function MateriaCard({datos, id, onDelete}){
                     <TextField 
                         label="Materia"
                         name="materia"
-                        value={asignatura.materia}
+                        value={materia.materia}
                         onChange={onChange}
                     />
                 )}
@@ -73,7 +80,7 @@ export default function MateriaCard({datos, id, onDelete}){
                             Profesor
                         </Typography>
                         <Typography component="p">
-                            {asignatura.profesor}
+                            {materia.profesor}
                         </Typography>
                     </>
                 )}
@@ -81,7 +88,7 @@ export default function MateriaCard({datos, id, onDelete}){
                     <TextField 
                         label="Profesor"
                         name="profesor"
-                        value={asignatura.profesor}
+                        value={materia.profesor}
                         onChange={onChange}
                     />
                 )}
@@ -91,7 +98,7 @@ export default function MateriaCard({datos, id, onDelete}){
                             Horario
                         </Typography>
                         <Typography component="p">
-                            {asignatura.horario}
+                            {materia.horario}
                         </Typography>
                     </>
                 )}
@@ -99,7 +106,7 @@ export default function MateriaCard({datos, id, onDelete}){
                     <TextField 
                         label="Horario"
                         name="horario"
-                        value={asignatura.horario}
+                        value={materia.horario}
                         onChange={onChange}
                     />
                 )}
@@ -111,7 +118,7 @@ export default function MateriaCard({datos, id, onDelete}){
                     </IconButton>
                 )}
                 {editar && (
-                    <IconButton color="primary" onClick={guardarAsignatura}>
+                    <IconButton color="primary" onClick={guardarMateria}>
                       <Icon>save</Icon>
                     </IconButton>
                 )}               
